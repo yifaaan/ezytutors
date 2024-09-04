@@ -2070,16 +2070,6 @@ dependencies = [
 ]
 
 [[package]]
-name = "tutor-nodb"
-version = "0.1.0"
-dependencies = [
- "actix-rt",
- "actix-web",
- "chrono",
- "serde",
-]
-
-[[package]]
 name = "tutor_db"
 version = "0.1.0"
 dependencies = [
@@ -2090,6 +2080,16 @@ dependencies = [
  "openssl",
  "serde",
  "sqlx",
+]
+
+[[package]]
+name = "tutor_nodb"
+version = "0.1.0"
+dependencies = [
+ "actix-rt",
+ "actix-web",
+ "chrono",
+ "serde",
 ]
 
 [[package]]

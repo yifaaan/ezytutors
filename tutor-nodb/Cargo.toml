@@ -1,5 +1,5 @@
 [package]
-name = "tutor-nodb"
+name = "tutor_nodb"
 version = "0.1.0"
 edition = "2021"
 default-run = "tutor_service"
