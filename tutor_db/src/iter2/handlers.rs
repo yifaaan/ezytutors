@@ -57,4 +57,19 @@ mod tests {
         let resp = get_courses_for_tutor(tutor_id, app_state).await;
         assert_eq!(resp.status(), StatusCode::OK);
     }
+
+    #[actix_rt::test]
+    async fn get_course_detail_test() {
+        dotenv().ok();
+        let database_url = env::var("DATABASE_URL").expect("DATABASE_URL is not set in .env file");
+        let pool = PgPool::connect(&database_url).await.unwrap();
+        let app_state = web::Data::new(AppState {
+            health_check_response: "".to_string(),
+            visit_count: Mutex::new(0),
+            db: pool,
+        });
+        let params = web::Path::from((1, 2));
+        let resp = get_course_details(params, app_state).await;
+        assert_eq!(resp.status(), StatusCode::OK);
+    }
 }
