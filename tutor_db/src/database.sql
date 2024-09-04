@@ -16,3 +16,5 @@ values(1, 1, 'First course', '2024-9-4 15:45:00');
 insert into ezy_course_c4
 (course_id, tutor_id, course_name,posted_time)
 values(2, 1, 'Second course', '2024-9-4 15:46:00');
+
+/* psql -U lyf -d ezytutors < ./src/database.sql */
