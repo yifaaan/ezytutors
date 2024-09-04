@@ -14,6 +14,7 @@ mod state;
 
 #[path = "../iter2/routes.rs"]
 mod routes;
+use routes::*;
 
 #[actix_rt::main]
 async fn main() -> io::Result<()> {
