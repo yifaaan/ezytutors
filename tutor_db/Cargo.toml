@@ -4,3 +4,18 @@ version = "0.1.0"
 edition = "2021"
 
 [dependencies]
+actix-web = "*"
+actix-rt = "*"
+dotenv = "*"
+sqlx = { version = "*", default-features = false, features = [
+    "postgres",
+    "runtime-tokio-native-tls",
+    "macros",
+    "chrono",
+] }
+
+serde = { version = "*", features = ["derive"] }
+
+chrono = { version = "*", features = ["serde"] }
+
+openssl = { version = "*", features = ["vendored"] }
