@@ -4,10 +4,10 @@ use serde::{Deserialize, Serialize};
 /// 数据库存储结构
 #[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct Tutor {
-    tutor_id: i32,
-    tutor_name: String,
-    tutor_pic_url: String,
-    tutor_profile: String,
+    pub tutor_id: i32,
+    pub tutor_name: String,
+    pub tutor_pic_url: String,
+    pub tutor_profile: String,
 }
 
 /// 客户端向服务器发来的结构
