@@ -50,7 +50,10 @@ pub async fn get_course_details_db(
     }
 }
 
-pub async fn post_new_course_db(pool: &PgPool, new_course: Course) -> Course {
+pub async fn post_new_course_db(
+    pool: &PgPool,
+    new_course: Course,
+) -> Result<Course, EzyTutorError> {
     let course_row = sqlx::query!(
         "insert into ezy_course_c4 
             (course_id, tutor_id, course_name) 
@@ -61,12 +64,11 @@ pub async fn post_new_course_db(pool: &PgPool, new_course: Course) -> Course {
         new_course.course_name
     ) // insert语句
     .fetch_one(pool) // 执行insert
-    .await
-    .unwrap();
-    Course {
+    .await?;
+    Ok(Course {
         course_id: course_row.course_id,
         tutor_id: course_row.tutor_id,
         course_name: course_row.course_name.clone(),
         posted_time: Some(chrono::NaiveDateTime::from(course_row.posted_time.unwrap())),
-    }
+    })
 }
