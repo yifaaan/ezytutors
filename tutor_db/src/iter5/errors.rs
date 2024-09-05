@@ -8,6 +8,7 @@ pub enum EzyTutorError {
     DBError(String),
     ActixError(String),
     NotFound(String),
+    InvalidInput(String),
 }
 
 impl EzyTutorError {
@@ -23,6 +24,10 @@ impl EzyTutorError {
             }
             Self::NotFound(msg) => {
                 println!("Not found error occurred: {:?}", msg);
+                msg.into()
+            }
+            Self::InvalidInput(msg) => {
+                println!("Invalid parameters received: {:?}", msg);
                 msg.into()
             }
         }
@@ -53,6 +58,7 @@ impl error::ResponseError for EzyTutorError {
         match self {
             Self::DBError(msg) | Self::ActixError(msg) => StatusCode::INTERNAL_SERVER_ERROR,
             Self::NotFound(msg) => StatusCode::NOT_FOUND,
+            EzyTutorError::InvalidInput(msg) => StatusCode::BAD_REQUEST,
         }
     }
     fn error_response(&self) -> actix_web::HttpResponse<actix_web::body::BoxBody> {
