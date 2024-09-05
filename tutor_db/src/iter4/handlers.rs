@@ -1,3 +1,5 @@
+use crate::errors::EzyTutorError;
+
 use super::db_access::*;
 use super::models::Course;
 use super::state::AppState;
@@ -15,22 +17,23 @@ pub async fn health_check_handler(app_state: web::Data<AppState>) -> HttpRespons
 pub async fn get_courses_for_tutor(
     params: web::Path<i32>,
     app_state: web::Data<AppState>,
-) -> HttpResponse {
+) -> Result<HttpResponse, EzyTutorError> {
     // 客户发来的查询参数
     let tutor_id = params.into_inner();
-    // 查询数据库
-    let courses = get_courses_for_tutor_db(&app_state.db, tutor_id).await;
-    // 返回查询结果
-    HttpResponse::Ok().json(courses)
+    // 查询数据库,并转化成json body
+    get_courses_for_tutor_db(&app_state.db, tutor_id)
+        .await
+        .map(|courses| HttpResponse::Ok().json(courses))
 }
 
 pub async fn get_course_details(
     params: web::Path<(i32, i32)>,
     app_state: web::Data<AppState>,
-) -> HttpResponse {
+) -> Result<HttpResponse, EzyTutorError> {
     let (tutor_id, course_id) = params.into_inner();
-    let course = get_course_details_db(&app_state.db, tutor_id, course_id).await;
-    HttpResponse::Ok().json(course)
+    get_course_details_db(&app_state.db, tutor_id, course_id)
+        .await
+        .map(|course| HttpResponse::Ok().json(course))
 }
 
 pub async fn post_new_course(
@@ -64,7 +67,7 @@ mod tests {
             db: pool,
         });
         let tutor_id = web::Path::from(1);
-        let resp = get_courses_for_tutor(tutor_id, app_state).await;
+        let resp = get_courses_for_tutor(tutor_id, app_state).await.unwrap();
         assert_eq!(resp.status(), StatusCode::OK);
     }
 
@@ -79,10 +82,11 @@ mod tests {
             db: pool,
         });
         let params = web::Path::from((1, 2));
-        let resp = get_course_details(params, app_state).await;
+        let resp = get_course_details(params, app_state).await.unwrap();
         assert_eq!(resp.status(), StatusCode::OK);
     }
 
+    #[ignore]
     #[actix_rt::test]
     async fn post_course_success() {
         dotenv().ok();

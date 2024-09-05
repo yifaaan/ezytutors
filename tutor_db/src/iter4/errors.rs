@@ -1,3 +1,5 @@
+use std::fmt;
+
 use actix_web::{error, http::StatusCode, HttpResponse};
 use serde::Serialize;
 
@@ -24,6 +26,24 @@ impl EzyTutorError {
                 msg.into()
             }
         }
+    }
+}
+
+impl fmt::Display for EzyTutorError {
+    fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result {
+        write!(f, "{}", self)
+    }
+}
+
+impl From<actix_web::error::Error> for EzyTutorError {
+    fn from(value: actix_web::error::Error) -> Self {
+        Self::ActixError(value.to_string())
+    }
+}
+
+impl From<sqlx::error::Error> for EzyTutorError {
+    fn from(value: sqlx::error::Error) -> Self {
+        Self::DBError(value.to_string())
     }
 }
 
