@@ -1,8 +1,6 @@
-use crate::errors::EzyTutorError;
 use actix_web::web;
 use chrono::NaiveDateTime;
 use serde::{Deserialize, Serialize};
-use std::convert::TryFrom;
 
 #[derive(Deserialize, Serialize, Debug, Clone, sqlx::FromRow)]
 pub struct Course {
@@ -71,7 +69,7 @@ impl From<web::Json<CreateCourse>> for CreateCourse {
 /// 客户请求更新课程
 #[derive(Deserialize, Debug, Clone)]
 pub struct UpdateCourse {
-    pub course_name: String,
+    pub course_name: Option<String>,
     pub course_description: Option<String>,
     pub course_format: Option<String>,
     pub course_structure: Option<String>,
