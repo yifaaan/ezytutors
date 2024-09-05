@@ -93,7 +93,7 @@ mod tests {
             visit_count: Mutex::new(0),
             db: pool,
         });
-        let params = web::Path::from((1, 2));
+        let params = web::Path::from((1, 1));
         let resp = get_course_details(params, app_state).await.unwrap();
         assert_eq!(resp.status(), StatusCode::OK);
     }
@@ -155,7 +155,7 @@ mod tests {
             db: pool,
         });
         let update_course_msg = UpdateCourse {
-            course_name: "Course name changed".into(),
+            course_name: Some("Course name changed".into()),
             course_description: Some("This is yet another test course".into()),
             course_format: None,
             course_level: Some("Intermediate".into()),

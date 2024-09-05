@@ -27,13 +27,12 @@ pub async fn get_courses_for_tutor_db(
     //     })
     //     .collect();
 
-    // match courses.len() {
-    //     0 => Err(EzyTutorError::NotFound(
-    //         "Courses not found for tutor".into(),
-    //     )),
-    //     _ => Ok(courses),
-    // }
-    Ok(course_rows)
+    match course_rows.len() {
+        0 => Err(EzyTutorError::NotFound(
+            "Courses not found for tutor".into(),
+        )),
+        _ => Ok(course_rows),
+    }
 }
 
 pub async fn get_course_details_db(
