@@ -1,6 +1,6 @@
 
 ### get tutor's courses
-GET http://localhost:3000/courses/1
+GET http://localhost:3000/courses/1/2
 
 
 ### post course
