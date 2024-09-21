@@ -1,0 +1,16 @@
+Switch over to the Postgres account: sudo -i -u postgres
+
+ create database ezytutors;
+  create user lyf with password '1119';
+   grant all privileges on database ezytutors to lyf;
+   GRANT ALL PRIVILEGES ON SCHEMA public TO lyf;
+
+   ALTER DATABASE ezytutors OWNER TO lyf;
+   \q
+   exit
+
+
+
+log in to the ezytutors database with the user name:   psql -U $DATABASE_USER -d ezytutors --password
+
+创建完sql文件：psql -U $DATABASE_USER -d ezytutors < $PROJECT_ROOT/src/database.sql
