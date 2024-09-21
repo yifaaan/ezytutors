@@ -1,0 +1,18 @@
+
+### get tutor's courses
+GET http://localhost:3000/courses/1
+
+
+### post course
+POST http://localhost:3000/courses/
+Content-Type: application/json
+
+{
+    "course_id": 4,
+    "tutor_id": 1,
+    "course_name": "Fourth course",
+    "posted_time": "2024-9-21T13:06:56"
+}
+
+### get course details
+GET http://localhost:3000/courses/1/3
