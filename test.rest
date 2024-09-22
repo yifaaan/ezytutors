@@ -8,7 +8,6 @@ POST http://localhost:3000/courses/
 Content-Type: application/json
 
 {
-    "course_id": 4,
     "tutor_id": 1,
     "course_name": "Fourth course",
     "posted_time": "2024-9-21T13:06:56"
@@ -79,10 +78,15 @@ GET http://localhost:8080/static/static-web-page.html
 GET http://localhost:8080/tutors
 
 
-###
-POST http://localhost:8080/courses/new/2
+### new course for tutor_id = 1
+POST http://localhost:8080/courses/new/1
 Content-Type: application/json
 
 {
+    "course_name":"Java web development",
+    "course_description":"Teaches how to write web apps in Rust",
+    "course_format":"Video",
+    "course_duration":"34 hours",
+    "course_price":22
 
 }
