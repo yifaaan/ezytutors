@@ -1,5 +1,5 @@
 [package]
-name = "tutor-db"
+name = "tutor-web-service"
 version = "0.1.0"
 edition = "2021"
 

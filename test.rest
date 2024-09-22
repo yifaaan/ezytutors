@@ -70,3 +70,10 @@ Content-Type: application/json
 
 ### delete tutor
 DELETE  http://localhost:3000/tutors/4
+
+
+### ssr
+GET http://localhost:8080/static/static-web-page.html
+
+###
+GET http://localhost:8080
