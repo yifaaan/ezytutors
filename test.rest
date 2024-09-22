@@ -55,7 +55,7 @@ Content-Type: application/json
 
 
 ### get tutors
-GET http://localhost:3000/tutors/
+GET http://localhost:3000/courses/1
 
 ### put
 PUT http://localhost:3000/tutors/4
@@ -90,3 +90,19 @@ Content-Type: application/json
     "course_price":22
 
 }
+
+### update course
+PUT http://localhost:8080/courses/1/33
+Content-Type: application/json
+
+{
+    "course_name":"Rust advanced web development",
+    "course_description":"Teaches how to write advanced web apps in Rust",
+    "course_format":"Video",
+    "course_duration":"4 hours",
+    "course_price":100
+
+}
+
+### delete course
+DELETE http://localhost:8080/courses/delete/1/2
