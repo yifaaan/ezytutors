@@ -16,3 +16,4 @@ sqlx = { version = "0.8.2", default_features = false, features = [
     "macros",
 ] }
 dotenv = "0.15.0"
+rust-argon2 = "2.1.0"
