@@ -31,8 +31,8 @@ async fn main() -> std::io::Result<()> {
         App::new()
             .app_data(Data::new(tera))
             .app_data(shared_data.clone())
-            .configure(app_config)
             .configure(course_config)
+            .configure(app_config)
     })
     .bind(&host_port)?
     .run()

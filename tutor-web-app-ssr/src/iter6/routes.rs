@@ -3,6 +3,7 @@ use actix_web::web;
 
 use super::handler::{
     auth::{handle_signin, show_signin_form},
+    course::{handle_delete_course, handle_insert_course, handle_update_course},
     register::{handle_register, show_register_form},
 };
 

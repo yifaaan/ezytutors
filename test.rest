@@ -77,3 +77,12 @@ GET http://localhost:8080/static/static-web-page.html
 
 ###
 GET http://localhost:8080/tutors
+
+
+###
+POST http://localhost:8080/courses/new/2
+Content-Type: application/json
+
+{
+
+}
